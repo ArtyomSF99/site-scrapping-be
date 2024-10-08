@@ -531,9 +531,12 @@ def scrape_data_from_url(url):
                 root_url = base_tag.get("href")
 
             # Step 8: Handling script and font tags
-            js_elements = soup.find_all(
-                "link", href=lambda href: href and href.endswith(".js") or ".js" in href
-            )
+            if soup is not None:
+                js_elements = soup.find_all(
+                    "link", href=lambda href: href and (href.endswith(".js") or ".js" in href)
+                )
+            else:
+                log_error("[ERROR] soup is None, skipping js_elements extraction")
 
             font_elements = soup.find_all(
                 "link",

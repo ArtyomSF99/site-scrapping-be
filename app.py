@@ -5,6 +5,7 @@ import subprocess
 from flask_cors import CORS
 import sys
 from flask_cors import cross_origin
+from urllib.parse import quote as url_quote
 
 if sys.version_info < (3, 8):
     required_python_version = ".".join(map(str, (3, 8)))
